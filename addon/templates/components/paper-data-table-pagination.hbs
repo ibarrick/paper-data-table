@@ -1,5 +1,5 @@
 <div class="page-select">
-	<div class="label">Page:</div>
+	<div class="md-table-label">Page:</div>
 	{{#paper-table-select class="md-table-select" value=page onChange=onChangePage}}
 		{{#each pages as |pageNumber|}}
 			{{#paper-option value=pageNumber}}
@@ -9,7 +9,7 @@
 	{{/paper-table-select}}
 </div>
 <div class="limit-select">
-	<div class="label">Rows per page:</div>
+	<div class="md-table-label">Rows per page:</div>
 	{{#paper-table-select class="md-table-select" value=limit onChange=onChangeLimit}}
 		{{#each limitOptions as |limit|}}
 			{{#paper-option value=limit}}
