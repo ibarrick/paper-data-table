@@ -1,6 +1,6 @@
 {
   "name": "paper-data-table",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Material Data Table for ember-paper",
   "directories": {
     "doc": "doc",
