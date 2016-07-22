@@ -9,6 +9,7 @@ Port of https://github.com/daniel-nagy/md-data-table using ember-paper
 ## Usage
 	From dummy app:
   ```hbs
+{{#paper-data-table selectable=true stickyHeaders=false as |table|}}
   {{#table.head as |head|}}
     {{#head.column checkbox=true}}
 			{{#paper-checkbox disabled=true onChange=null}}{{/paper-checkbox}}
