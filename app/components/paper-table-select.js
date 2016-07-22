@@ -1,0 +1,1 @@
+export { default } from 'paper-data-table/components/paper-table-select';

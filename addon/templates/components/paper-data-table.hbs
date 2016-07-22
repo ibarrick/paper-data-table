@@ -1,0 +1,7 @@
+{{#if stickyHeaders}}
+	{{yield (hash head=(component 'paper-data-table-head' stickyHeaders=stickyHeaders selectable=selectable headersWormhole=headersWormhole setSortProp=(action (mut sortProp))) body=(component 'paper-data-table-body' selectable=selectable stickyHeaders=stickyHeaders setRowWidth=(action (mut rowWidth)) setHeadersWormhole=(action (mut headersWormhole))) sortProp=sortProp)}}
+{{else}}
+	<table class="md-table md-row-select">
+		{{yield (hash head=(component 'paper-data-table-head' stickyHeaders=stickyHeaders selectable=selectable headersWormhole=headersWormhole setSortProp=(action (mut sortProp))) body=(component 'paper-data-table-body' stickyHeaders=stickyHeaders selectable=selectable setRowWidth=(action (mut rowWidth)) setHeadersWormhole=(action (mut headersWormhole))) sortProp=sortProp)}}
+	</table>
+{{/if}}

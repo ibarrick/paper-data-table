@@ -1,0 +1,11 @@
+{{#if label}}
+  <label class={{if value 'md-static' 'md-placeholder'}} for={{inputElementId}}>{{label}}</label>
+{{/if}}
+
+{{#if icon}}
+  {{paper-icon icon class=icon-class}}
+{{/if}}
+
+{{#paper-select-core class="md-table-select" placeholder=placeholder value=value disabled=disabled onChange=onChange getItems=getItems itemLabelCallback=itemLabelCallback as |items|}}
+  {{yield items}}
+{{/paper-select-core}}

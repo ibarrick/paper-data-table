@@ -1,0 +1,9 @@
+{{#ember-wormhole to="paper-wormhole"}}
+	{{paper-backdrop
+		class="md-edit-dialog-backdrop"
+		onClick=(action "outsideClicked")
+	}}
+	{{#paper-table-dialog-inner parent=parent}}
+	  	{{yield}}
+	{{/paper-table-dialog-inner}}
+{{/ember-wormhole}}

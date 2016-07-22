@@ -1,0 +1,12 @@
+$base-background-color: #e0e0e0;
+
+@import 'ember-paper';
+@import 'paper-data-table';
+
+md-content {
+	background-color: #e0e0e0 !important;
+}
+
+.ember-application {
+	background-color: #e0e0e0;
+}

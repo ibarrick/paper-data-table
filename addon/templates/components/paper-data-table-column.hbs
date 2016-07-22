@@ -1,0 +1,6 @@
+{{yield}}
+{{#if active}}
+	{{paper-icon "arrow upward" class=(if (eq "asc" sortDir) "md-sort-icon md-asc" "md-sort-icon md-desc")}}
+{{else}}
+	{{paper-icon "arrow downward" class="md-sort-icon md-desc" }}
+{{/if}}

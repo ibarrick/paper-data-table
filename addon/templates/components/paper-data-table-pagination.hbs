@@ -1,0 +1,24 @@
+<div class="page-select">
+	<div class="label">Page:</div>
+	{{#paper-table-select class="md-table-select" value=page onChange=onChangePage}}
+		{{#each pages as |pageNumber|}}
+			{{#paper-option value=pageNumber}}
+				{{pageNumber}}
+			{{/paper-option}}
+		{{/each}}
+	{{/paper-table-select}}
+</div>
+<div class="limit-select">
+	<div class="label">Rows per page:</div>
+	{{#paper-table-select class="md-table-select" value=limit onChange=onChangeLimit}}
+		{{#each limitOptions as |limit|}}
+			{{#paper-option value=limit}}
+				{{limit}}
+			{{/paper-option}}
+		{{/each}}
+	{{/paper-table-select}}
+</div>
+<div class="buttons">
+	{{#paper-button iconButton=true onClick=onDecrementPage}}{{paper-icon "navigate before"}}{{/paper-button}}
+	{{#paper-button iconButton=true onClick=onIncrementPage}}{{paper-icon "navigate next"}}{{/paper-button}}
+</div>

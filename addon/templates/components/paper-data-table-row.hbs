@@ -1,0 +1,4 @@
+{{#unless selectable}}
+	<td class="md-column md-checkbox-column" style="display:none;"></td>
+{{/unless}}
+{{yield (hash cell=(component 'paper-data-table-cell'))}}
