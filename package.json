@@ -1,6 +1,6 @@
 {
   "name": "paper-data-table",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "The default blueprint for ember-cli addons.",
   "directories": {
     "doc": "doc",
@@ -51,6 +51,6 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-	"demoURL": "https://ibarrick.github.io/paper-data-table/"
+    "demoURL": "https://ibarrick.github.io/paper-data-table/"
   }
 }
