@@ -16,9 +16,9 @@
 					{{#head.column sortProp="fat" numeric=true}}Fat (g){{/head.column}}
 					{{#head.column sortProp="carbs" numeric=true}}Carbs (g){{/head.column}}
 					{{#head.column sortProp="protein" numeric=true}}Protein (g){{/head.column}}
-					{{#head.column sortProp="sodium" numeric=true}}Sodium (mg){{/head.column}}
-					{{#head.column sortProp="calcium" numeric=true}}Calcium (%){{/head.column}}
-					{{#head.column sortProp="iron" numeric=true}}Iron (%){{/head.column}}
+					{{#head.column numeric=true}}Sodium (mg){{/head.column}}
+					{{#head.column numeric=true}}Calcium (%){{/head.column}}
+					{{#head.column numeric=true}}Iron (%){{/head.column}}
 				{{/table.head}}
 				{{#table.body as |body|}}
 					{{#each (sort-by table.sortProp paginatedDesserts) as |dessert|}}

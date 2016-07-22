@@ -2,7 +2,7 @@
 $md-dark: rgba(0, 0, 0, 87%);
 $md-dark-secondary: rgba(0, 0, 0, 54%);
 $md-dark-disabled: rgba(0, 0, 0, 26%);
-$md-dark-icon: $md-dark-secondary;
+$md-dark-icon: rgba(0, 0, 0, 54%);
 $md-dark-divider: rgba(0, 0, 0, 12%);
 
 md-card {
@@ -50,6 +50,7 @@ md-table-container {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
+
 
 table.md-table {
   width: 100%;
@@ -109,7 +110,7 @@ table.md-table {
       line-height: 16px !important;
 
       &.md-sort-icon {
-        color: $md-dark-disabled;
+        color: rgba(0, 0, 0, 26%);
         opacity: 0;
         transition: transform 0.25s, opacity 0.25s;
 
@@ -155,11 +156,11 @@ table.md-table {
     transition: background-color 0.2s;
 
     &:not([disabled]):hover {
-      background-color: $md-dark-row-hover !important;
+      background-color: #eee !important;
     }
 
     &.md-selected {
-      background-color: $md-dark-row-select;
+      background-color: #f5f5f5;
     }
   }
 
