@@ -8,9 +8,10 @@ export default Ember.Component.extend({
 	classNames: ['md-cell'],
 	edit: false,
 	showEdit: false,
-	click() {
-		if (this.get('edit')) {
-			this.set('showEdit',true);
+	actions: {
+		close() {
+			//this.set('showEdit',false);
+			this.sendAction('onClose',this);
 		}
 	}
 });

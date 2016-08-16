@@ -33,6 +33,9 @@ export default Ember.Controller.extend({
 			if (page < max) {
 				this.set('page',page+1);
 			}
+		},
+		toggleShowEdit(cell) {
+			Ember.set(cell,'showEdit',false);
 		}
 	}
 });
