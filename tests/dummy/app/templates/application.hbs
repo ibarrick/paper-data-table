@@ -24,8 +24,9 @@
 				{{#table.body as |body|}}
 					{{#each (sort-by table.sortProp paginatedDesserts) as |dessert|}}
 						{{#body.row edit=true as |row|}}
+							{{log row.toggleEdit}}
 							{{#if row.showEdit}}
-								{{#row.edit-dialog class="layout-row" onClose=(action (toggle 'showEdit' row))}}
+								{{#row.edit-dialog class="layout-row" onClose=row.toggleEdit}}
 									{{paper-input onChange=null}}{{paper-input onChange=null}}{{paper-input onChange=null}}{{paper-input onChange=null}}{{paper-input onChange=null}}
 								{{/row.edit-dialog}}
 							{{else}}
@@ -41,13 +42,12 @@
 								{{#row.cell numeric=true}}{{dessert.calcium}}%{{/row.cell}}
 								{{#row.cell numeric=true}}{{dessert.iron}}%{{/row.cell}}
 								{{#row.cell edit=true as |cell|}}
-									{{log cell.showEdit}}
 									{{#if cell.showEdit}}
-										{{#cell.edit-dialog onClose=(action (toggle 'showEdit' cell))}}
+										{{#cell.edit-dialog onClose=row.toggleEdit}}
 											{{paper-input value=dessert.comment onChange=(action (mut dessert.comment))}}
 										{{/cell.edit-dialog}}
 									{{else}}
-										{{dessert.comment}}{{#paper-button iconButton=true onClick=(action (toggle "showEdit" cell))}}{{paper-icon 'edit'}}{{/paper-button}}
+										{{dessert.comment}}{{#paper-button iconButton=true onClick=row.toggleEdit}}{{paper-icon 'edit'}}{{/paper-button}}
 									{{/if}}
 								{{/row.cell}}
 

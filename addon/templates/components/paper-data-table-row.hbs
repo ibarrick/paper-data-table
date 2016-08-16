@@ -1,4 +1,4 @@
 {{#unless selectable}}
 	<td class="md-column md-checkbox-column" style="display:none;"></td>
 {{/unless}}
-{{yield (hash cell=(component 'paper-data-table-cell') edit-dialog=(component 'paper-data-table-edit-dialog' parent=elementId  onClose=(action 'close')) showEdit=showEdit)}}
+{{yield (hash cell=(component 'paper-data-table-cell') edit-dialog=(component 'paper-data-table-edit-dialog' parent=elementId  onClose=(action 'close')) showEdit=showEdit  toggleEdit=(action 'toggleEdit'))}}

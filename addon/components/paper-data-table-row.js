@@ -11,5 +11,10 @@ export default Ember.Component.extend({
 		if (this.get('edit')) {
 			this.set('showEdit',true);
 		}
+	},
+	actions: {
+		toggleEdit() {
+			this.toggleProperty('showEdit');
+		}
 	}
 });
