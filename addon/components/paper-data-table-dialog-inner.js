@@ -32,7 +32,7 @@ export default Ember.Component.extend({
 	didInsertElement() {
 		this.positionDialog();
 		Ember.$(window).on('resize',this.positionDialog.bind(this));
-		Ember.run.scheduleOnce('afterRender',this,function() { this.$('input').focus(); });
+		Ember.run.scheduleOnce('afterRender',this,function() { this.$('input').first().focus(); });
 	},
 	willDestroyElement() {
 		Ember.$(window).off('resize',this.positionDialog.bind(this));
