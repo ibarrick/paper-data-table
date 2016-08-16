@@ -23,28 +23,35 @@
 				{{/table.head}}
 				{{#table.body as |body|}}
 					{{#each (sort-by table.sortProp paginatedDesserts) as |dessert|}}
-						{{#body.row as |row|}}
-							{{#row.cell checkbox=true}}
-								{{#paper-checkbox value=dessert.checked onChange=(action (mut dessert.checked))}}{{/paper-checkbox}}
-							{{/row.cell}}
-							{{#row.cell}}{{dessert.name}}{{/row.cell}}
-							{{#row.cell numeric=true}}{{dessert.calories}}{{/row.cell}}
-							{{#row.cell numeric=true}}{{dessert.fat}}{{/row.cell}}
-							{{#row.cell numeric=true}}{{dessert.carbs}}{{/row.cell}}
-							{{#row.cell numeric=true}}{{dessert.protein}}{{/row.cell}}
-							{{#row.cell numeric=true}}{{dessert.sodium}}{{/row.cell}}
-							{{#row.cell numeric=true}}{{dessert.calcium}}%{{/row.cell}}
-							{{#row.cell numeric=true}}{{dessert.iron}}%{{/row.cell}}
-							{{#row.cell edit=true as |cell|}}
-								{{log cell.showEdit}}
-								{{#if cell.showEdit}}
-									{{#cell.edit-dialog onClose=(action (toggle 'showEdit' cell))}}
-										{{paper-input value=dessert.comment onChange=(action (mut dessert.comment))}}
-									{{/cell.edit-dialog}}
-								{{else}}
-									{{dessert.comment}}{{#paper-button iconButton=true onClick=(action (toggle "showEdit" cell))}}{{paper-icon 'edit'}}{{/paper-button}}
-								{{/if}}
-							{{/row.cell}}
+						{{#body.row edit=true as |row|}}
+							{{#if row.showEdit}}
+								{{#row.edit-dialog class="layout-row" onClose=(action (toggle 'showEdit' row))}}
+									{{paper-input onChange=null}}{{paper-input onChange=null}}{{paper-input onChange=null}}{{paper-input onChange=null}}{{paper-input onChange=null}}
+								{{/row.edit-dialog}}
+							{{else}}
+								{{#row.cell checkbox=true}}
+									{{#paper-checkbox value=dessert.checked onChange=(action (mut dessert.checked))}}{{/paper-checkbox}}
+								{{/row.cell}}
+								{{#row.cell}}{{dessert.name}}{{/row.cell}}
+								{{#row.cell numeric=true}}{{dessert.calories}}{{/row.cell}}
+								{{#row.cell numeric=true}}{{dessert.fat}}{{/row.cell}}
+								{{#row.cell numeric=true}}{{dessert.carbs}}{{/row.cell}}
+								{{#row.cell numeric=true}}{{dessert.protein}}{{/row.cell}}
+								{{#row.cell numeric=true}}{{dessert.sodium}}{{/row.cell}}
+								{{#row.cell numeric=true}}{{dessert.calcium}}%{{/row.cell}}
+								{{#row.cell numeric=true}}{{dessert.iron}}%{{/row.cell}}
+								{{#row.cell edit=true as |cell|}}
+									{{log cell.showEdit}}
+									{{#if cell.showEdit}}
+										{{#cell.edit-dialog onClose=(action (toggle 'showEdit' cell))}}
+											{{paper-input value=dessert.comment onChange=(action (mut dessert.comment))}}
+										{{/cell.edit-dialog}}
+									{{else}}
+										{{dessert.comment}}{{#paper-button iconButton=true onClick=(action (toggle "showEdit" cell))}}{{paper-icon 'edit'}}{{/paper-button}}
+									{{/if}}
+								{{/row.cell}}
+
+							{{/if}}
 						{{/body.row}}
 					{{/each}}
 				{{/table.body}}
