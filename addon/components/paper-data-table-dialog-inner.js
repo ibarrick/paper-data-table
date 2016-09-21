@@ -27,7 +27,7 @@ export default Ember.Component.extend({
 			this.set('top',cellBounds.top + 1);
 		}
 
-		this.$().css('minWidth', cellBounds.width + 'px');
+		this.$().css('min-width',(this.get('row') ? tableBounds.width : cellBounds.width) + 'px');
 	},
 	didInsertElement() {
 		this.positionDialog();
