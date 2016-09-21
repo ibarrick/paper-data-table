@@ -5,10 +5,11 @@ export default Ember.Component.extend({
 	layout,
 	tagName: 'md-edit-dialog',
 	attributeBindings: ['style'],
+	width: null,
 	transitionClass: 'ng',
 	classNames: ['md-whiteframe-1dp'],
-	style: Ember.computed('left','top',function() {
-		return "left: " + this.get('left') + "px;top: " + this.get('top') + "px";
+	style: Ember.computed('left','top','width',function() {
+		return `left: ${this.get('left')}px;top: ${this.get('top')}px; min-width: ${this.get('width')}px;`;
 	}),
 	positionDialog() {
 		let size = { width: this.get('element').clientWidth, height: this.get('element').clientHeight };
@@ -26,8 +27,7 @@ export default Ember.Component.extend({
 		} else {
 			this.set('top',cellBounds.top + 1);
 		}
-
-		this.$().css('min-width',(this.get('row') ? tableBounds.width : cellBounds.width) + 'px');
+		this.set('width',(this.get('row') ? tableBounds.width : cellBounds.width));
 	},
 	didInsertElement() {
 		this.positionDialog();
