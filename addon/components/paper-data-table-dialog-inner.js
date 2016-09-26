@@ -14,7 +14,7 @@ export default Ember.Component.extend({
 		let left = Handlebars.Utils.escapeExpression(this.get('left'));
 		let top = Handlebars.Utils.escapeExpression(this.get('top'));
 		let width = Handlebars.Utils.escapeExpression(this.get('width'));
-		return Handlebars.SafeString(`left: ${left}px;top: ${top}px; min-width: ${width}px;`);
+		return Ember.String.htmlSafe(`left: ${left}px;top: ${top}px; min-width: ${width}px;`);
 	}),
 	positionDialog() {
 		let size = { width: this.get('element').clientWidth, height: this.get('element').clientHeight };

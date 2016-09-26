@@ -15,7 +15,7 @@ export default Ember.Component.extend({
 	style: computed('width', function() {
 		let width = Handlebars.Utils.escapeExpression(this.get('width'));
 		if (width) {
-			return Handlebars.SafeString(`width: ${width}px;`);
+			return Ember.String.htmlSafe(`width: ${width}px;`);
 		} else {
 			return undefined;
 		}
