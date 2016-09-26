@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import layout from '../templates/components/paper-data-table-dialog-inner';
 
+const { Handlebars } = Ember;
+
 export default Ember.Component.extend({
 	layout,
 	tagName: 'md-edit-dialog',
@@ -9,7 +11,10 @@ export default Ember.Component.extend({
 	transitionClass: 'ng',
 	classNames: ['md-whiteframe-1dp'],
 	style: Ember.computed('left','top','width',function() {
-		return `left: ${this.get('left')}px;top: ${this.get('top')}px; min-width: ${this.get('width')}px;`;
+		let left = Handlebars.Utils.escapeExpression(this.get('left'));
+		let top = Handlebars.Utils.escapeExpression(this.get('top'));
+		let width = Handlebars.Utils.escapeExpression(this.get('width'));
+		return Handlebars.SafeString(`left: ${left}px;top: ${top}px; min-width: ${width}px;`);
 	}),
 	positionDialog() {
 		let size = { width: this.get('element').clientWidth, height: this.get('element').clientHeight };

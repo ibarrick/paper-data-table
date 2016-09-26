@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import layout from '../templates/components/paper-data-table-row';
 
-const { computed } = Ember;
+const { computed, Handlebars } = Ember;
 
 export default Ember.Component.extend({
 	layout,
@@ -11,9 +11,9 @@ export default Ember.Component.extend({
 	attributeBindings: ['style'],
 	style: computed('edit', 'onClick', function() {
 		if (this.get('onClick') || this.get('edit')) {
-			return "cursor: pointer;";
+			return Handlebars.SafeString("cursor: pointer;");
 		} else {
-			return "";
+			return Handlebars.SafeString("");
 		}
 	}),
 	click() {
