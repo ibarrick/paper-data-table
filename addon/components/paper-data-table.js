@@ -7,6 +7,5 @@ export default Ember.Component.extend({
 	classNameBindings: ['noPadding:no-padding-table'],
 	rowWidth: 0,
 	sortProp: "",
-	stickyHeaders: true,
 	selectable: false
 });

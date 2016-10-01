@@ -28,6 +28,9 @@ export default Ember.Component.extend({
 		close() {
 			//this.set('showEdit',false);
 			this.sendAction('onClose',this);
+		},
+		toggleEdit() {
+			this.toggleProperty('showEdit');
 		}
 	}
 });

@@ -11,9 +11,9 @@ export default Ember.Component.extend({
 	attributeBindings: ['style'],
 	style: computed('edit', 'onClick', function() {
 		if (this.get('onClick') || this.get('edit')) {
-			return Handlebars.SafeString("cursor: pointer;");
+			return Ember.String.htmlSafe("cursor: pointer;");
 		} else {
-			return Handlebars.SafeString("");
+			return Ember.String.htmlSafe("");
 		}
 	}),
 	click() {
