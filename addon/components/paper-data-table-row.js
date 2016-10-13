@@ -1,7 +1,10 @@
 import Ember from 'ember';
 import layout from '../templates/components/paper-data-table-row';
 
-const { computed, Handlebars } = Ember;
+const {
+	computed,
+	String: { htmlSafe }
+ } = Ember;
 
 export default Ember.Component.extend({
 	layout,
@@ -11,10 +14,10 @@ export default Ember.Component.extend({
 	attributeBindings: ['style'],
 	style: computed('edit', 'onClick', function() {
 		if (this.get('onClick') || this.get('edit')) {
-			return Ember.String.htmlSafe("cursor: pointer;");
-		} else {
-			return Ember.String.htmlSafe("");
+			return htmlSafe('cursor: pointer;');
 		}
+
+		return htmlSafe("");
 	}),
 	click() {
 		this.sendAction('onClick');
