@@ -1,7 +1,11 @@
 import Ember from 'ember';
 import layout from '../templates/components/paper-data-table-column';
 
-const { computed, Handlebars } = Ember;
+const {
+	computed,
+	Handlebars: { Utils: { escapeExpression } },
+  String: { htmlSafe }
+} = Ember;
 
 export default Ember.Component.extend({
 	layout,
@@ -9,34 +13,40 @@ export default Ember.Component.extend({
 	classNameBindings: ['numeric:md-numeric','active:md-active','sortProp:md-sort'],
 	attributeBindings: ['style'],
 	classNames: ['md-column'],
-	active: false,
 	currentProp: null,
-	style: computed('width', function() {
-		let width = Handlebars.Utils.escapeExpression(this.get('width'));
-		if (width) {
-			return Ember.String.htmlSafe(`width: ${width}px;`);
-		} else {
-			return undefined;
-		}
-	}),
 	sortProp: null,
 	sortDir: null,
+
+	style: computed('width', function() {
+		let width = escapeExpression(this.get('width'));
+		if (width) {
+			return htmlSafe(`width: ${width}px;`);
+		}
+		return undefined;
+	}),
+
+	active: computed('sortProp', 'currentProp', function() {
+		return this.get('sortProp') && this.get('sortProp') === this.get('currentProp');
+	}).readOnly(),
+
 	click() {
-		if (this.get('sortProp')) {
-			if (!this.get('active')) {
-				this.toggleProperty('active');
-				this.set('sortDir','asc');
-			} else if (this.get('active') && this.get('sortDir') === 'asc') {
-				this.set('sortDir','desc');
-			} else if (this.get('active') && this.get('sortDir') === 'desc') {
-				this.set('sortDir','asc')
-			}
-			this.get('sortChanged')(this.get('sortProp'),this.get('sortDir'));
+		let {
+			sortProp,
+			sortDir,
+			active } = this.getProperties('sortProp', 'sortDir', 'active');
+
+		if (!sortProp) {
+			return;
 		}
+
+		let newSortDir = sortDir;
+		if (!active) {
+			newSortDir = 'asc';
+		} else {
+			newSortDir = sortDir === 'asc' ? 'desc': 'asc';
+		}
+
+		this.get('sortChanged')(sortProp, newSortDir);
+		this.set('sortDir', newSortDir);
 	},
-	didUpdateAttrs() {
-		if (this.get('currentProp') !== this.get('sortProp')) {
-			this.set('active',false);
-		}
-	}
 });

@@ -1,4 +1,13 @@
 <table class="md-table md-row-select">
-	{{yield (hash head=(component 'paper-data-table-head' selectable=selectable setSortProp=(action (mut sortProp))) body=(component 'paper-data-table-body' selectable=selectable setRowWidth=(action (mut rowWidth))) sortProp=sortProp)}}
+	{{yield (hash
+		head=(component 'paper-data-table-head'
+			selectable=selectable
+			setSortProp=(action (mut sortProp))
+		)
+		body=(component 'paper-data-table-body'
+			selectable=selectable
+			setRowWidth=(action (mut rowWidth))
+		)
+		sortProp=sortProp
+	)}}
 </table>
-

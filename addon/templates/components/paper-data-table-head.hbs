@@ -3,13 +3,20 @@
 		{{#unless selectable}}
 			<th class="md-column md-checkbox-column" style="display:none;"></th>
 		{{/unless}}
-		{{yield (hash column=(component 'paper-data-table-column' sortChanged=(action 'sortChanged') currentProp=currentProp))}}
+		{{yield (hash
+			column=(component 'paper-data-table-column'
+				sortChanged=(action 'sortChanged')
+				currentProp=(readonly sortProp)
+				sortDir=(readonly sortDir))
+			)}}
 	</tr>
 </thead>
 {{#if headersWormhole}}
 	{{#ember-wormhole destinationElement=headersWormhole}}
 	<tr id="hidden-row" style="visibility: hidden;">
-		{{yield (hash column=(component 'paper-data-table-column' sortChanged=(action 'sortChanged') currentProp=currentProp))}}
+		{{yield (hash
+			column=(component 'paper-data-table-column' sortChanged=(action 'sortChanged')
+			currentProp=currentProp))}}
 	</tr>
 	{{/ember-wormhole}}
 {{/if}}

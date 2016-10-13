@@ -28,7 +28,7 @@ export default Ember.Controller.extend({
 			}
 		},
 		incrementPage() {
-			let page =  this.get('page')
+			let page =  this.get('page');
 			let max = this.get('pages').reduce((prev,curr) => curr > prev ? curr : prev,0);
 			if (page < max) {
 				this.set('page',page+1);
