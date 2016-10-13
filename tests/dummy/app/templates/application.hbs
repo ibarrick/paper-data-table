@@ -7,7 +7,7 @@
 	{{#paper-card as |card|}}
 		{{#card.content}}
 			{{#paper-data-table selectable=true as |table|}}
-				{{#table.head as |head|}}
+				{{#table.head sortProp="name" sortDir="asc" as |head|}}
 					{{#head.column checkbox=true}}
 						{{#paper-checkbox disabled=true onChange=null}}{{/paper-checkbox}}
 					{{/head.column}}
