@@ -1,3 +1,6 @@
 <tbody class="md-body" style="position: relative;">
-	{{yield (hash row=(component 'paper-data-table-row' selectable=selectable))}}
+	{{yield (hash
+			row=(component bodyRowComponent selectable=selectable)
+		)
+	}}
 </tbody>
