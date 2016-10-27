@@ -7,5 +7,10 @@ export default Ember.Component.extend({
 	classNameBindings: ['noPadding:no-padding-table'],
 	rowWidth: 0,
 	sortProp: "",
-	selectable: false
+	selectable: false,
+
+	bodyComponent: 'paper-data-table-body',
+	bodyRowComponent: 'paper-data-table-row',
+	headComponent: 'paper-data-table-head'
+
 });
