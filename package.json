@@ -37,7 +37,7 @@
     "ember-disable-prototype-extensions": "^1.1.0",
     "ember-export-application-global": "^1.0.5",
     "ember-load-initializers": "^0.5.1",
-    "ember-paper": "git://github.com/miguelcobain/ember-paper.git#2f2ea395246d226558106a80f130ea028ebb20a4",
+    "ember-paper": "git+https://github.com/miguelcobain/ember-paper.git#77da9594348136dea52e9c41a040cdc43be4889f",
     "ember-resolver": "^2.0.3",
     "ember-truth-helpers": "1.2.0",
     "loader.js": "^4.0.1"

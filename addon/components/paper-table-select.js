@@ -1,7 +1,9 @@
 import Ember from 'ember';
 import layout from '../templates/components/paper-table-select';
+import PaperSelect from 'ember-paper/components/paper-select';
 
-export default Ember.Component.extend({
+export default PaperSelect.extend({
   layout,
-  tagName: ''
+  tagName: 'div',
+  classNames: ['page-select']
 });
