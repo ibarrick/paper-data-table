@@ -7,7 +7,7 @@ export default Ember.Component.extend({
 	layout,
 	tagName: 'td',
 	classNameBindings: ['numeric:md-numeric','edit:md-clickable'],
-	attributeBindings: ['style'],
+	attributeBindings: ['style','colspan'],
 	classNames: ['md-cell'],
 	edit: false,
 	showEdit: false,
