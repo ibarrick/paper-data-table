@@ -11,6 +11,7 @@
 	{{/paper-table-select}}
 </div>
 <div class="buttons">
+	{{#if total}}<div class="label">{{startOffset}} - {{endOffset}} of {{total}}</div>{{/if}}
 	{{#paper-button iconButton=true onClick=onDecrementPage}}{{paper-icon "navigate before"}}{{/paper-button}}
 	{{#paper-button iconButton=true onClick=onIncrementPage}}{{paper-icon "navigate next"}}{{/paper-button}}
 </div>
