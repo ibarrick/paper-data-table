@@ -25,7 +25,10 @@
 					{{#each (sort-by table.sortDesc paginatedDesserts) as |dessert|}}
 						{{#body.row edit=true as |row|}}
 							{{#row.cell checkbox=true}}
-								{{#paper-checkbox value=dessert.checked onChange=(action (mut dessert.checked))}}{{/paper-checkbox}}
+								{{#paper-checkbox
+									value=dessert.checked
+									onChange=(action (mut dessert.checked))}}
+								{{/paper-checkbox}}
 							{{/row.cell}}
 							{{#row.cell}}{{dessert.name}}{{/row.cell}}
 							{{#row.cell numeric=true}}{{dessert.calories}}{{/row.cell}}
@@ -38,10 +41,15 @@
 							{{#row.cell edit=true as |cell|}}
 								{{#if cell.showEdit}}
 									{{#cell.edit-dialog onClose=cell.toggleEdit}}
-										{{paper-input value=dessert.comment onChange=(action (mut dessert.comment))}}
+										{{paper-input
+											value=dessert.comment
+											onChange=(action (mut dessert.comment))}}
 									{{/cell.edit-dialog}}
 								{{else}}
-									{{dessert.comment}}{{#paper-button iconButton=true onClick=row.toggleEdit}}{{paper-icon 'edit'}}{{/paper-button}}
+									{{dessert.comment}}
+									{{#paper-button iconButton=true onClick=row.toggleEdit}}
+										{{paper-icon 'edit'}}
+									{{/paper-button}}
 								{{/if}}
 							{{/row.cell}}
 						{{/body.row}}
@@ -59,5 +67,4 @@
 				onDecrementPage=(action 'decrementPage')}}
 		{{/card.content}}
 	{{/paper-card}}
-	{{!-- <div style="width: 100%; height: 100px"></div> --}}
 {{/paper-content}}
