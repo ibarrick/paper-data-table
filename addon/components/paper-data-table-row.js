@@ -2,11 +2,12 @@ import Ember from 'ember';
 import layout from '../templates/components/paper-data-table-row';
 
 const {
-	computed,
-	String: { htmlSafe }
+	Component,
+	String: { htmlSafe },
+	computed
  } = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend({
 	layout,
 	tagName: 'tr',
 	classNames: ['md-row'],
@@ -16,15 +17,16 @@ export default Ember.Component.extend({
 		if (this.get('onClick') || this.get('edit')) {
 			return htmlSafe('cursor: pointer;');
 		}
-
-		return htmlSafe("");
+		return htmlSafe('');
 	}),
+
 	click() {
 		this.sendAction('onClick');
 		if (this.get('edit')) {
 			this.set('showEdit',true);
 		}
 	},
+
 	actions: {
 		toggleEdit() {
 			this.toggleProperty('showEdit');

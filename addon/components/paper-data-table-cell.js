@@ -1,9 +1,14 @@
 import Ember from 'ember';
 import layout from '../templates/components/paper-data-table-cell';
 
-const { computed, Handlebars } = Ember;
+const {
+	Component,
+	Handlebars: { Utils: { escapeExpression } },
+  String: { htmlSafe },
+	computed
+} = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend({
 	layout,
 	tagName: 'td',
 	classNameBindings: ['numeric:md-numeric','edit:md-clickable'],
@@ -13,9 +18,9 @@ export default Ember.Component.extend({
 	showEdit: false,
 	width: null,
 	style: computed('width', function() {
-		let width = Handlebars.Utils.escapeExpression(this.get('width'));
+		let width = escapeExpression(this.get('width'));
 		if (width) {
-			return Ember.String.htmlSafe(`width: ${width}px;`);
+			return htmlSafe(`width: ${width}px;`);
 		} else {
 			return undefined;
 		}
@@ -26,7 +31,6 @@ export default Ember.Component.extend({
 	},
 	actions: {
 		close() {
-			//this.set('showEdit',false);
 			this.sendAction('onClose',this);
 		},
 		toggleEdit() {

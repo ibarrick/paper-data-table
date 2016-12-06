@@ -14,8 +14,8 @@ export default Component.extend({
 	bodyRowComponent: 'paper-data-table-row',
 	headComponent: 'paper-data-table-head',
 	rowWidth: 0,
-	sortProp: "name",
-	sortDir: "asc",
+	sortProp: '',
+	sortDir: 'asc',
 	selectable: false,
 
 	sortDesc: computed('sortProp', 'sortDir', function() {
