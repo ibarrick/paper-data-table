@@ -16,10 +16,12 @@ export default Ember.Component.extend({
 		let width = Handlebars.Utils.escapeExpression(this.get('width'));
 		return Ember.String.htmlSafe(`left: ${left}px;top: ${top}px; min-width: ${width}px;`);
 	}),
+
 	positionDialog() {
-		let size = { width: this.get('element').clientWidth, height: this.get('element').clientHeight };
+		let element = this.get('element') || { clientWidth: 0, clientHeight: 0};
+		let size = { width: element.clientWidth, height: element.clientHeight };
 		let cellBounds = Ember.$('#'+this.get('parent'))[0].getBoundingClientRect();
-		let tableBounds = this.$().closest('md-table-container')[0].getBoundingClientRect();
+		let tableBounds = this._mdTableContainer.getBoundingClientRect();
 
 		if (size.width > tableBounds.right - cellBounds.left) {
 			this.set('left',tableBounds.right - size.width);
@@ -34,11 +36,23 @@ export default Ember.Component.extend({
 		}
 		this.set('width',(this.get('row') ? tableBounds.width : cellBounds.width));
 	},
-	didInsertElement() {
-		this.positionDialog();
-		Ember.$(window).on('resize',this.positionDialog.bind(this));
-		Ember.run.scheduleOnce('afterRender',this,function() { this.$('input').first().focus(); });
+
+	didRender() {
+		this._super(...arguments);
+		if (!this._mdTableContainer) {
+			this._mdTableContainer = this.$().closest('md-table-container')[0];
+		}
 	},
+
+	didInsertElement() {
+		this._super(...arguments);
+		Ember.$(window).on('resize', this.positionDialog.bind(this));
+		Ember.run.scheduleOnce('afterRender', this, function() {
+			this.positionDialog();
+			this.$('input').first().focus();
+		});
+	},
+
 	willDestroyElement() {
 		Ember.$(window).off('resize',this.positionDialog.bind(this));
 	}

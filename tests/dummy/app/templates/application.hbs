@@ -48,7 +48,15 @@
 					{{/each}}
 				{{/table.body}}
 			{{/paper-data-table}}
-			{{paper-data-table-pagination limit=limit limitOptions=limitOptions page=page pages=pages onChangePage=(action (mut page)) onChangeLimit=(action (mut limit)) onIncrementPage=(action 'incrementPage') onDecrementPage=(action 'decrementPage')}}
+			{{paper-data-table-pagination
+				limit=limit
+				limitOptions=limitOptions
+				page=page
+				pages=pages
+				onChangePage=(action (mut page))
+				onChangeLimit=(action (mut limit))
+				onIncrementPage=(action 'incrementPage')
+				onDecrementPage=(action 'decrementPage')}}
 		{{/card.content}}
 	{{/paper-card}}
 	{{!-- <div style="width: 100%; height: 100px"></div> --}}

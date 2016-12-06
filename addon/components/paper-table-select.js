@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import layout from '../templates/components/paper-table-select';
 import PaperSelect from 'ember-paper/components/paper-select';
 
