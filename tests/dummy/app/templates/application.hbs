@@ -6,8 +6,8 @@
 {{#paper-content}}
 	{{#paper-card as |card|}}
 		{{#card.content}}
-			{{#paper-data-table selectable=true as |table|}}
-				{{#table.head sortProp="name" sortDir="asc" as |head|}}
+			{{#paper-data-table sortProp="name" sortDir="desc" selectable=true as |table|}}
+				{{#table.head as |head|}}
 					{{#head.column checkbox=true}}
 						{{#paper-checkbox disabled=true onChange=null}}{{/paper-checkbox}}
 					{{/head.column}}
@@ -22,7 +22,7 @@
 					{{#head.column}}Comment{{/head.column}}
 				{{/table.head}}
 				{{#table.body as |body|}}
-					{{#each (sort-by table.sortProp paginatedDesserts) as |dessert|}}
+					{{#each (sort-by table.sortDesc paginatedDesserts) as |dessert|}}
 						{{#body.row edit=true as |row|}}
 							{{#row.cell checkbox=true}}
 								{{#paper-checkbox value=dessert.checked onChange=(action (mut dessert.checked))}}{{/paper-checkbox}}

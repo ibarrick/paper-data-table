@@ -5,18 +5,23 @@
 		{{/unless}}
 		{{yield (hash
 			column=(component 'paper-data-table-column'
-				sortChanged=(action 'sortChanged')
+				sortChanged=onSortChanged
 				currentProp=(readonly sortProp)
-				sortDir=(readonly sortDir))
-			)}}
+				sortDir=(readonly sortDir)
+			)
+		)}}
 	</tr>
 </thead>
 {{#if headersWormhole}}
 	{{#ember-wormhole destinationElement=headersWormhole}}
 	<tr id="hidden-row" style="visibility: hidden;">
 		{{yield (hash
-			column=(component 'paper-data-table-column' sortChanged=(action 'sortChanged')
-			currentProp=currentProp))}}
+			column=(component 'paper-data-table-column'
+				sortChanged=onSortChanged
+				currentProp=(readonly sortProp)
+				sortDir=(readonly sortDir)
+			)
+		)}}
 	</tr>
 	{{/ember-wormhole}}
 {{/if}}

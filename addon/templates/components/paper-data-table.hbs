@@ -1,14 +1,18 @@
 <table class="md-table md-row-select" style={{if fixed "table-layout: fixed;"}}>
 	{{yield (hash
+		sortProp=(readonly sortProp)
+		sortDir=(readonly sortDir)
+		sortDesc=(readonly sortDesc)
 		head=(component headComponent
 			selectable=selectable
-			setSortProp=(action (mut sortProp))
+			sortProp=(readonly sortProp)
+			sortDir=(readonly sortDir)
+			onSortChanged=(action 'sortChanged')
 		)
 		body=(component bodyComponent
 			bodyRowComponent=bodyRowComponent
 			selectable=selectable
 			setRowWidth=(action (mut rowWidth))
 		)
-		sortProp=sortProp
 	)}}
 </table>

@@ -3,7 +3,7 @@ import layout from '../templates/components/paper-data-table-body';
 
 export default Ember.Component.extend({
 	layout,
-  	tagName: '',
+  tagName: '',
 	cellspacing: "0",
-	cellpadding: "0"
+	cellpadding: "0",
 });
