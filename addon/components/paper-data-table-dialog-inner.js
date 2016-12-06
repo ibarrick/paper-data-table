@@ -1,26 +1,33 @@
 import Ember from 'ember';
 import layout from '../templates/components/paper-data-table-dialog-inner';
 
-const { Handlebars } = Ember;
+const {
+	Component,
+	Handlebars: { Utils: { escapeExpression } },
+	String: { htmlSafe },
+	computed,
+	run,
+	$
+ } = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend({
 	layout,
 	tagName: 'md-edit-dialog',
 	attributeBindings: ['style'],
 	width: null,
 	transitionClass: 'ng',
 	classNames: ['md-whiteframe-1dp'],
-	style: Ember.computed('left','top','width',function() {
-		let left = Handlebars.Utils.escapeExpression(this.get('left'));
-		let top = Handlebars.Utils.escapeExpression(this.get('top'));
-		let width = Handlebars.Utils.escapeExpression(this.get('width'));
-		return Ember.String.htmlSafe(`left: ${left}px;top: ${top}px; min-width: ${width}px;`);
+	style: computed('left','top','width',function() {
+		let left = escapeExpression(this.get('left'));
+		let top = escapeExpression(this.get('top'));
+		let width = escapeExpression(this.get('width'));
+		return htmlSafe(`left: ${left}px;top: ${top}px; min-width: ${width}px;`);
 	}),
 
 	positionDialog() {
 		let element = this.get('element') || { clientWidth: 0, clientHeight: 0};
 		let size = { width: element.clientWidth, height: element.clientHeight };
-		let cellBounds = Ember.$('#'+this.get('parent'))[0].getBoundingClientRect();
+		let cellBounds = $(`#${this.get('parent')}`)[0].getBoundingClientRect();
 		let tableBounds = this._mdTableContainer.getBoundingClientRect();
 
 		if (size.width > tableBounds.right - cellBounds.left) {
@@ -37,23 +44,19 @@ export default Ember.Component.extend({
 		this.set('width',(this.get('row') ? tableBounds.width : cellBounds.width));
 	},
 
-	didRender() {
-		this._super(...arguments);
-		if (!this._mdTableContainer) {
-			this._mdTableContainer = this.$().closest('md-table-container')[0];
-		}
-	},
-
 	didInsertElement() {
 		this._super(...arguments);
-		Ember.$(window).on('resize', this.positionDialog.bind(this));
-		Ember.run.scheduleOnce('afterRender', this, function() {
+
+		this._mdTableContainer = this.$().closest('md-table-container')[0];
+		$(window).on('resize', this.positionDialog.bind(this));
+		run.scheduleOnce('afterRender', this, function() {
 			this.positionDialog();
 			this.$('input').first().focus();
 		});
 	},
 
 	willDestroyElement() {
-		Ember.$(window).off('resize',this.positionDialog.bind(this));
+		this._super(...arguments);
+		$(window).off('resize', this.positionDialog.bind(this));
 	}
 });

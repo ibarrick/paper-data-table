@@ -2,12 +2,13 @@ import Ember from 'ember';
 import layout from '../templates/components/paper-data-table-column';
 
 const {
-	computed,
+	Component,
 	Handlebars: { Utils: { escapeExpression } },
-  String: { htmlSafe }
+  String: { htmlSafe },
+	computed
 } = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend({
 	layout,
 	tagName: 'th',
 	classNameBindings: ['numeric:md-numeric','active:md-active','sortProp:md-sort'],
