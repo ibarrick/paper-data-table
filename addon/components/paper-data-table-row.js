@@ -28,6 +28,9 @@ export default Component.extend({
 	},
 
 	actions: {
+		close() {
+			this.sendAction('onClose', this);
+		},
 		toggleEdit() {
 			this.toggleProperty('showEdit');
 		}
