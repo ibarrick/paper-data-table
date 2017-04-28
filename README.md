@@ -6,6 +6,8 @@ Port of https://github.com/daniel-nagy/md-data-table using ember-paper
 
   `ember install paper-data-table`
 
+  Add `@import 'paper-data-table';` to your `app.scss` file.
+
 ## Usage
 	From dummy app:
   ```hbs
