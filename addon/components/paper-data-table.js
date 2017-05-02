@@ -25,7 +25,11 @@ export default Component.extend({
 
 	actions: {
 		sortChanged(sortProp, sortDir) {
-			this.setProperties({ sortProp, sortDir });
+			if (this.get('onChangeSort')) {
+				this.get('onChangeSort')({ sortProp, sortDir });
+			} else {
+				this.setProperties({ sortProp, sortDir });
+			}
 		}
 	}
 });
