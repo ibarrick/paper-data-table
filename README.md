@@ -1,5 +1,5 @@
-# Paper-data-table
-[![Build Status](https://travis-ci.org/ibarrick/paper-data-table.svg?branch=master)](https://travis-ci.org/ibarrick/paper-data-table)
+# Paper-data-table [![Build Status](https://travis-ci.org/ibarrick/paper-data-table.svg?branch=master)](https://travis-ci.org/ibarrick/paper-data-table)
+
 
 Port of https://github.com/daniel-nagy/md-data-table using ember-paper
 
