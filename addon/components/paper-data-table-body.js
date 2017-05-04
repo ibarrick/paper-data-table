@@ -1,11 +1,17 @@
 import Ember from 'ember';
 import layout from '../templates/components/paper-data-table-body';
 
-const { Component } = Ember;
+const {
+	Component,
+	String: { htmlSafe },
+} = Ember;
 
 export default Component.extend({
+	classNameBindings: ['md-body'],
+	attributeBindings: ['style'],
 	layout,
-  tagName: '',
-	cellspacing: "0",
-	cellpadding: "0",
+	tagName: 'tbody',
+	style: htmlSafe('position: relative;'),
+	cellspacing: '0',
+	cellpadding: '0',
 });
