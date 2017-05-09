@@ -7,7 +7,7 @@ const {
 } = Ember;
 
 export default Component.extend({
-	classNameBindings: ['md-body'],
+	classNames: ['md-body'],
 	attributeBindings: ['style'],
 	layout,
 	tagName: 'tbody',
