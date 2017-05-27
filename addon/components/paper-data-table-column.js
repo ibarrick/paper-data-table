@@ -12,7 +12,7 @@ export default Component.extend({
 	layout,
 	tagName: 'th',
 	classNameBindings: ['numeric:md-numeric','active:md-active','sortProp:md-sort'],
-	attributeBindings: ['style'],
+	attributeBindings: ['style','colspan'],
 	classNames: ['md-column'],
 	currentProp: null,
 	sortProp: null,
