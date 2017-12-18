@@ -12,7 +12,7 @@ export default Component.extend({
 	tagName: 'tr',
 	classNames: ['md-row'],
 	showEdit: false,
-	attributeBindings: ['style'],
+	attributeBindings: ['style', 'disabled'],
 	style: computed('edit', 'onClick', function() {
 		if (this.get('onClick') || this.get('edit')) {
 			return htmlSafe('cursor: pointer;');
