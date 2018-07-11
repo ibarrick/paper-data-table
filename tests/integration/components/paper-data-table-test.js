@@ -1,89 +1,92 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render, click, findAll } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('paper-data-table', 'Integration | Component | paper data table', {
-  integration: true,
-  beforeEach() {
+module('Integration | Component | paper data table', function(hooks) {
+  setupRenderingTest(hooks);
+
+  hooks.beforeEach(function() {
     this.set('noop', function() {});
-  }
-});
-
-test('it can toggle sort state', function(assert) {
-  this.setProperties({
-    sortDir: 'desc',
-    sortProp: 'property_b'
   });
 
-  this.render(hbs`
-    {{#paper-data-table sortProp=sortProp sortDir=sortDir as |table|}}
-      {{#table.head as |head|}}
-        {{#head.column}}Col A{{/head.column}}
-        {{#head.column sortProp="property_b"}}Col B{{/head.column}}
-      {{/table.head}}
-      {{#table.body as |body|}}
-        {{#body.row as |row|}}
-        
-        {{#row.cell}}
-          Row 1 - Col A
-        {{/row.cell}}
-        
-        {{#row.cell}}
-          Row 1 - Col B
-        {{/row.cell}}
+  test('it can toggle sort state', async function(assert) {
+    this.setProperties({
+      sortDir: 'desc',
+      sortProp: 'property_b'
+    });
 
-        {{/body.row}}
-      {{/table.body}}
-    {{/paper-data-table}}
-  `);
+    await render(hbs`
+      {{#paper-data-table sortProp=sortProp sortDir=sortDir as |table|}}
+        {{#table.head as |head|}}
+          {{#head.column}}Col A{{/head.column}}
+          {{#head.column sortProp="property_b"}}Col B{{/head.column}}
+        {{/table.head}}
+        {{#table.body as |body|}}
+          {{#body.row as |row|}}
 
-  assert.notOk(this.$('.md-column:not(.md-checkbox-column):nth(0)').hasClass('md-sort'), 'First column is not sortable');
-  assert.ok(this.$('.md-column:not(.md-checkbox-column):nth(1)').hasClass('md-sort'), 'Second column is sortable');
+          {{#row.cell}}
+            Row 1 - Col A
+          {{/row.cell}}
 
-  assert.ok(this.$('.md-column:not(.md-checkbox-column):nth(1)').hasClass('md-active'), 'Second column sort is active');
-  assert.ok(this.$('.md-column:not(.md-checkbox-column):nth(1) .md-sort-icon.md-desc').length === 1, 'Current sort is desc');
-});
+          {{#row.cell}}
+            Row 1 - Col B
+          {{/row.cell}}
 
-test('it can use custom sort action', function(assert) {
-  assert.expect(6);
+          {{/body.row}}
+        {{/table.body}}
+      {{/paper-data-table}}
+    `);
 
-  this.setProperties({
-    sortDir: 'asc',
-    sortProp: 'property_b'
+    assert.dom('.md-column:not(.md-checkbox-column)').hasNoClass('md-sort', 'First column is not sortable');
+    assert.dom(findAll('.md-column:not(.md-checkbox-column)')[1]).hasClass('md-sort', 'Second column is sortable');
+
+    assert.dom('.md-column.md-sort').hasClass('md-active', 'Second column sort is active');
+    assert.dom('.md-column.md-sort .md-sort-icon.md-desc').exists('Current sort is desc');
   });
 
-  this.set('onChangeSort', function({ sortProp, sortDir }) {
-    assert.equal(sortProp, 'property_b', 'Check sortProp');
-    assert.equal(sortDir, 'desc', 'Check sortDir');
-    this.setProperties({ sortProp, sortDir });
-  }.bind(this));
+  test('it can use custom sort action', async function(assert) {
+    assert.expect(6);
 
-  this.render(hbs`
-    {{#paper-data-table onChangeSort=onChangeSort sortProp=sortProp sortDir=sortDir as |table|}}
-      {{#table.head as |head|}}
-        {{#head.column}}Col A{{/head.column}}
-        {{#head.column sortProp="property_b"}}Col B{{/head.column}}
-      {{/table.head}}
-      {{#table.body as |body|}}
-        {{#body.row as |row|}}
-        
-        {{#row.cell}}
-          Row 1 - Col A
-        {{/row.cell}}
-        
-        {{#row.cell}}
-          Row 1 - Col B
-        {{/row.cell}}
+    this.setProperties({
+      sortDir: 'asc',
+      sortProp: 'property_b'
+    });
 
-        {{/body.row}}
-      {{/table.body}}
-    {{/paper-data-table}}
-  `);
+    this.set('onChangeSort', function({ sortProp, sortDir }) {
+      assert.equal(sortProp, 'property_b', 'Check sortProp');
+      assert.equal(sortDir, 'desc', 'Check sortDir');
+      this.setProperties({ sortProp, sortDir });
+    }.bind(this));
 
-  assert.ok(this.$('.md-column:not(.md-checkbox-column):nth(1)').hasClass('md-active'), 'Second column sort is active');
-  assert.ok(this.$('.md-column:not(.md-checkbox-column):nth(1) .md-sort-icon.md-asc').length === 1, 'Current sort is asc');
+    await render(hbs`
+      {{#paper-data-table onChangeSort=onChangeSort sortProp=sortProp sortDir=sortDir as |table|}}
+        {{#table.head as |head|}}
+          {{#head.column}}Col A{{/head.column}}
+          {{#head.column sortProp="property_b"}}Col B{{/head.column}}
+        {{/table.head}}
+        {{#table.body as |body|}}
+          {{#body.row as |row|}}
 
-  this.$('.md-column:not(.md-checkbox-column):nth(1)').click();
+          {{#row.cell}}
+            Row 1 - Col A
+          {{/row.cell}}
 
-  assert.ok(this.$('.md-column:not(.md-checkbox-column):nth(1)').hasClass('md-active'), 'Second column sort is active');
-  assert.ok(this.$('.md-column:not(.md-checkbox-column):nth(1) .md-sort-icon.md-desc').length === 1, 'Current sort is desc');
+          {{#row.cell}}
+            Row 1 - Col B
+          {{/row.cell}}
+
+          {{/body.row}}
+        {{/table.body}}
+      {{/paper-data-table}}
+    `);
+
+    assert.dom(findAll('.md-column:not(.md-checkbox-column)')[1]).hasClass('md-active', 'Second column sort is active');
+    assert.dom('.md-column.md-active .md-sort-icon.md-asc').exists('Current sort is asc');
+
+    await click(findAll('.md-column:not(.md-checkbox-column)')[1]);
+
+    assert.dom(findAll('.md-column:not(.md-checkbox-column)')[1]).hasClass('md-active', 'Second column sort is active');
+    assert.dom('.md-column.md-active .md-sort-icon.md-desc').exists('Current sort is desc');
+  });
 });

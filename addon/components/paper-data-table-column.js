@@ -1,11 +1,11 @@
+import Component from '@ember/component';
+import { htmlSafe } from '@ember/template';
+import { computed } from '@ember/object';
 import Ember from 'ember';
 import layout from '../templates/components/paper-data-table-column';
 
 const {
-	Component,
-	Handlebars: { Utils: { escapeExpression } },
-  String: { htmlSafe },
-	computed
+    Handlebars: { Utils: { escapeExpression } }
 } = Ember;
 
 export default Component.extend({

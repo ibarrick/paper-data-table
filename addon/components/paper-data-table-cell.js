@@ -1,11 +1,11 @@
+import Component from '@ember/component';
+import { htmlSafe } from '@ember/template';
+import { computed } from '@ember/object';
 import Ember from 'ember';
 import layout from '../templates/components/paper-data-table-cell';
 
 const {
-	Component,
-	Handlebars: { Utils: { escapeExpression } },
-  String: { htmlSafe },
-	computed
+    Handlebars: { Utils: { escapeExpression } }
 } = Ember;
 
 export default Component.extend({
@@ -26,12 +26,12 @@ export default Component.extend({
 		}
 	}),
 	click() {
-		this.sendAction('onClick');
+    if (this.get('onClick')) { this.get('onClick')() }
 		this.set('showEdit',true);
 	},
 	actions: {
 		close() {
-			this.sendAction('onClose',this);
+      if (this.get('onClose')) { this.get('onClose')(this) }
 		},
 		toggleEdit() {
 			this.toggleProperty('showEdit');

@@ -1,10 +1,6 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 import layout from '../templates/components/paper-data-table-pagination';
-
-const {
-	Component,
-	computed,
- } = Ember;
 
 export default Component.extend({
 	layout,
@@ -14,8 +10,8 @@ export default Component.extend({
 		return Math.max((this.get('page') - 1) * this.get('limit') + 1, 1); // 1-based index
 	}),
 	endOffset: computed('startOffset', 'limit', 'total', function() {
-	  let endOffset = this.get('startOffset') + this.get('limit');
-	  let total = this.get('total');
+		let endOffset = this.get('startOffset') + this.get('limit');
+		let total = this.get('total');
 		return total ? Math.min(endOffset, total) : endOffset;
 	})
 });

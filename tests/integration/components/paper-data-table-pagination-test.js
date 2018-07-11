@@ -1,29 +1,33 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('paper-data-table-pagination', 'Integration | Component | paper data table pagination', {
-  integration: true,
-  beforeEach() {
-    this.set('noop', function() {});
-  }
-});
+module('Integration | Component | paper data table pagination', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('it renders startOffset - endOffset of total', function(assert) {
-  this.setProperties({
-    page: 1,
-    limit: 10,
-    total: null
+  hooks.beforeEach(function() {
+    this.set('noop', function() {});
   });
 
-  this.render(hbs`{{paper-data-table-pagination onChangeLimit=noop page=page limit=limit total=total}}`);
+  test('it renders startOffset - endOffset of total', async function(assert) {
+    this.setProperties({
+      page: 1,
+      limit: 10,
+      total: null
+    });
 
-  assert.equal(this.$('.buttons > .label').text().trim(), '', 'Hidden if no total given');
+    await render(hbs`{{paper-data-table-pagination onChangeLimit=noop page=page limit=limit total=total}}`);
 
-  this.set('total', 13);
+    // await pauseTest();
+    assert.dom('.buttons > .label').doesNotExist('Hidden if no total given');
 
-  assert.equal(this.$('.buttons > .label').text().trim(), '1 - 11 of 13');
+    this.set('total', 13);
 
-  this.set('page', 2);
+    assert.dom('.buttons > .label').hasText('1 - 11 of 13');
 
-  assert.equal(this.$('.buttons > .label').text().trim(), '11 - 13 of 13', 'endOffset is capped at total');
+    this.set('page', 2);
+
+    assert.dom('.buttons > .label').hasText('11 - 13 of 13', 'endOffset is capped at total');
+  });
 });
