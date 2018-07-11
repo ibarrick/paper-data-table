@@ -31,7 +31,7 @@ export default Component.extend({
 	},
 	actions: {
 		close() {
-      if (this.get('onClick')) { this.get('onClick')(this) }
+      if (this.get('onClose')) { this.get('onClose')(this) }
 		},
 		toggleEdit() {
 			this.toggleProperty('showEdit');
